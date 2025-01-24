@@ -6,9 +6,11 @@ void child_process(char **av, char **envp, int *fd)
     int filein;
     
     filein = open(av[1], O_RDONLY);
-    // dup2(fd[1], STDOUT_FILENO);
-    // dup2(filein, STDIN_FILENO);
-    execute(av[2], envp);
+    dup2(fd[1], STDOUT_FILENO);
+    dup2(filein, STDIN_FILENO);
+    close(fd[0]);
+    close(fd[1]);
+    execute(av[2], envp, av);
 }
 
 int main(int ac, char ** av, char **envp)

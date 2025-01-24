@@ -12,6 +12,6 @@
 
 
 void error(void);
-void execute(char *cmd, char **envp);
+void execute(char *cmd, char **envp, char **av);
 
 #endif
